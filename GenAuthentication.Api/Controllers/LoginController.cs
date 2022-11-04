@@ -1,5 +1,4 @@
 ﻿using GenCommon.Shared.Extensions;
-using GenCore.Data.Extensions;
 using GenCore.Data.Models;
 using GenCore.Data.Repositories.Interface;
 using GenCryptography.Service.Utilities.Interface;
@@ -104,7 +103,7 @@ namespace GenAuthentication.Api.Controllers
                     return BadRequest("Error while generating token");
                 }
 
-                string validationMessage = $"Please use the following token, which expires in 24 hours, to login: {userVerification.Token}";
+                string validationMessage = $"Please use the following token, which expires in 24 hours, to login: {userToken.Token}";
 
                 _emailDespatcher.SendEmail(GenCommon.Shared.Settings.SmtpHost, GenCommon.Shared.Settings.SmtpPort, GenCommon.Shared.Settings.SmtpUseSsl, userVerification.Email, GenCommon.Shared.Settings.SmtpSender, GenCommon.Shared.Settings.SmtpPassword, "Validate login attempt", validationMessage);
             }
@@ -117,7 +116,7 @@ namespace GenAuthentication.Api.Controllers
                     return BadRequest("Error while generating token");
                 }
 
-                string validationMessage = $"Please use the following token, which expires in 24 hours, to login: {userVerification.Token}";
+                string validationMessage = $"Please use the following token, which expires in 24 hours, to login: {userToken.Token}";
 
                 _smsDespatcher.SendSms(GenCommon.Shared.Settings.ClickSendUsername, GenCommon.Shared.Settings.ClickSendApiKey, userVerification.Phone, GenCommon.Shared.Settings.SmsSender, validationMessage);
             }
