@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="GenCore.Data" Version="1.0.0" />
+    <PackageReference Include="GenCryptography.Service" Version="1.0.0" />
+    <PackageReference Include="GenNotification.Service" Version="1.0.0" />
+    <PackageReference Include="GenTokenization.Service" Version="1.0.0" />
     <PackageReference Include="GenValidation.Service" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
