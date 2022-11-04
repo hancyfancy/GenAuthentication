@@ -16,16 +16,13 @@ namespace GenAuthentication.Api.Controllers
         private readonly IUserRolesRepository _userRolesRepo;
         private readonly IValidator _emailValidator;
         private readonly IValidator _phoneValidator;
-        private readonly string _connectionString;
 
-        public RegisterController()
+        public RegisterController(IValidator validator, IUserRepository userRepository, IUserVerificationRepository userVerificationRepository, IUserRolesRepository userRolesRepository)
         {
-            _connectionString = "Data Source=localhost;Initial Catalog=CwRetail;Persist Security Info=true;User ID=TestLogin; Password = ABC123";
-            _emailValidator = new EmailValidator();
-            _phoneValidator = new PhoneValidator();
-            _userRepo = new UserRepository(_connectionString);
-            _userVerificationRepo = new UserVerificationRepository(_connectionString);
-            _userRolesRepo = new UserRolesRepository(_connectionString);
+            _emailValidator = _phoneValidator = validator;
+            _userRepo = userRepository;
+            _userVerificationRepo = userVerificationRepository;
+            _userRolesRepo = userRolesRepository;
         }
 
         [HttpPost(Name = "New")]
