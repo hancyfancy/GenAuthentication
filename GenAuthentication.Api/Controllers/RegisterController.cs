@@ -12,15 +12,17 @@ namespace GenAuthentication.Api.Controllers
     public class RegisterController : ControllerBase
     {
         private readonly IUserRepository _userRepo;
+        private readonly IRolesRepository _rolesRepo;
         private readonly IUserVerificationRepository _userVerificationRepo;
         private readonly IUserRolesRepository _userRolesRepo;
         private readonly IValidator _emailValidator;
         private readonly IValidator _phoneValidator;
 
-        public RegisterController(IValidator validator, IUserRepository userRepository, IUserVerificationRepository userVerificationRepository, IUserRolesRepository userRolesRepository)
+        public RegisterController(IValidator validator, IUserRepository userRepository, IRolesRepository rolesRepository, IUserVerificationRepository userVerificationRepository, IUserRolesRepository userRolesRepository)
         {
             _emailValidator = _phoneValidator = validator;
             _userRepo = userRepository;
+            _rolesRepo = rolesRepository;
             _userVerificationRepo = userVerificationRepository;
             _userRolesRepo = userRolesRepository;
         }

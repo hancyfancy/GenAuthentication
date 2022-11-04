@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IValidator>();
 builder.Services.AddTransient<IUserRepository>(s => new UserRepository(connectionString));
+builder.Services.AddTransient<IRolesRepository>(s => new RolesRepository(connectionString));
 builder.Services.AddTransient<IUserVerificationRepository>(s => new UserVerificationRepository(connectionString));
 builder.Services.AddTransient<IUserRolesRepository>(s => new UserRolesRepository(connectionString));
 
