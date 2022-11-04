@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GenCore.Data" Version="1.0.0" />
+    <PackageReference Include="GenCommon.Shared" Version="1.0.0" />
     <PackageReference Include="GenCryptography.Service" Version="1.0.0" />
     <PackageReference Include="GenNotification.Service" Version="1.0.0" />
     <PackageReference Include="GenTokenization.Service" Version="1.0.0" />

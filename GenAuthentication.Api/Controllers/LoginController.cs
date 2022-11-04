@@ -1,4 +1,5 @@
-﻿using GenCore.Data.Extensions;
+﻿using GenCommon.Shared.Extensions;
+using GenCore.Data.Extensions;
 using GenCore.Data.Models;
 using GenCore.Data.Repositories.Interface;
 using GenCryptography.Service.Utilities.Interface;
@@ -71,12 +72,12 @@ namespace GenAuthentication.Api.Controllers
 
             if (!userVerification.EmailVerified)
             {
-                _emailDespatcher.SendEmail(Settings.SmtpHost, Settings.SmtpPort, Settings.SmtpUseSsl, userVerification.Email, Settings.SmtpSender, Settings.SmtpPassword, "Verification required", $"Please verify email at https://localhost:7138/api/Authentication/Verify?mode=email&user={encryptedUserVerificationJson}");
+                _emailDespatcher.SendEmail(GenCommon.Shared.Settings.SmtpHost, GenCommon.Shared.Settings.SmtpPort, GenCommon.Shared.Settings.SmtpUseSsl, userVerification.Email, GenCommon.Shared.Settings.SmtpSender, GenCommon.Shared.Settings.SmtpPassword, "Verification required", $"Please verify email at https://localhost:7138/api/Authentication/Verify?mode=email&user={encryptedUserVerificationJson}");
             }
 
             if (!userVerification.PhoneVerified)
             {
-                _smsDespatcher.SendSms(Settings.ClickSendUsername, Settings.ClickSendApiKey, userVerification.Phone, Settings.SmsSender, $"Please verify phone number at https://localhost:7138/api/Authentication/Verify?mode=phone&user={encryptedUserVerificationJson}");
+                _smsDespatcher.SendSms(GenCommon.Shared.Settings.ClickSendUsername, GenCommon.Shared.Settings.ClickSendApiKey, userVerification.Phone, GenCommon.Shared.Settings.SmsSender, $"Please verify phone number at https://localhost:7138/api/Authentication/Verify?mode=phone&user={encryptedUserVerificationJson}");
             }
 
             if (!(userVerification.EmailVerified || userVerification.PhoneVerified))
@@ -96,7 +97,7 @@ namespace GenAuthentication.Api.Controllers
 
             if (userVerification.EmailVerified)
             {
-                userToken.Token = _alphanumericTokenizer.GetUniqueKey(Settings.EmailValidationSize);
+                userToken.Token = _alphanumericTokenizer.GetUniqueKey(GenCommon.Shared.Settings.EmailValidationSize);
 
                 if (userToken.Token.IsEmpty())
                 {
@@ -105,11 +106,11 @@ namespace GenAuthentication.Api.Controllers
 
                 string validationMessage = $"Please use the following token, which expires in 24 hours, to login: {userVerification.Token}";
 
-                _emailDespatcher.SendEmail(Settings.SmtpHost, Settings.SmtpPort, Settings.SmtpUseSsl, userVerification.Email, Settings.SmtpSender, Settings.SmtpPassword, "Validate login attempt", validationMessage);
+                _emailDespatcher.SendEmail(GenCommon.Shared.Settings.SmtpHost, GenCommon.Shared.Settings.SmtpPort, GenCommon.Shared.Settings.SmtpUseSsl, userVerification.Email, GenCommon.Shared.Settings.SmtpSender, GenCommon.Shared.Settings.SmtpPassword, "Validate login attempt", validationMessage);
             }
             else if (userVerification.PhoneVerified)
             {
-                userToken.Token = _numericTokenizer.GetUniqueKey(Settings.PhoneValidationSize);
+                userToken.Token = _numericTokenizer.GetUniqueKey(GenCommon.Shared.Settings.PhoneValidationSize);
 
                 if (userToken.Token.IsEmpty())
                 {
@@ -118,7 +119,7 @@ namespace GenAuthentication.Api.Controllers
 
                 string validationMessage = $"Please use the following token, which expires in 24 hours, to login: {userVerification.Token}";
 
-                _smsDespatcher.SendSms(Settings.ClickSendUsername, Settings.ClickSendApiKey, userVerification.Phone, Settings.SmsSender, validationMessage);
+                _smsDespatcher.SendSms(GenCommon.Shared.Settings.ClickSendUsername, GenCommon.Shared.Settings.ClickSendApiKey, userVerification.Phone, GenCommon.Shared.Settings.SmsSender, validationMessage);
             }
 
             _userTokensRepo.InsertOrUpdate(userVerification.UserId, userToken.Token);
