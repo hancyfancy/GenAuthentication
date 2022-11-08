@@ -13,7 +13,7 @@ export class AuthenticationService {
   public userJwt: string = '';
 
   constructor(private http: HttpClient, private settings: Settings) {
-    this.urlPrefix = this.settings.domain + '/api/Authentication';
+    this.urlPrefix = this.settings.domain + '/api';
     this.userJwt = '';
   }
 
@@ -22,7 +22,7 @@ export class AuthenticationService {
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post<string>(this.urlPrefix + '/CreateUser', JSON.stringify(user, (_, v) => typeof v === 'bigint' ? v.toString() : v), httpOptions).pipe(
+    return this.http.post<string>(this.urlPrefix + '/Register/New', JSON.stringify(user, (_, v) => typeof v === 'bigint' ? v.toString() : v), httpOptions).pipe(
       catchError(this.handleError<string>('addUser'))
     ).toPromise();
   }
@@ -32,7 +32,7 @@ export class AuthenticationService {
     var httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post<string>(this.urlPrefix + '/GetUser', JSON.stringify(user, (_, v) => typeof v === 'bigint' ? v.toString() : v), httpOptions).pipe(
+    return this.http.post<string>(this.urlPrefix + '/Login/Individual', JSON.stringify(user, (_, v) => typeof v === 'bigint' ? v.toString() : v), httpOptions).pipe(
       catchError(this.handleError<string>('getUser'))
     ).toPromise();
   }
