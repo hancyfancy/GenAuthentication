@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenAuthentication.Api", "GenAuthentication.Api\GenAuthentication.Api.csproj", "{B74DED55-1D3B-40F9-8A8D-F908B8B2265D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenAuthentication.Api", "GenAuthentication.Api\GenAuthentication.Api.csproj", "{B74DED55-1D3B-40F9-8A8D-F908B8B2265D}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "GenAuthentication.Ui", "GenAuthentication.Ui\GenAuthentication.Ui.esproj", "{07E5DF65-8179-4AB1-85C3-F8F063DF3F7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{B74DED55-1D3B-40F9-8A8D-F908B8B2265D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B74DED55-1D3B-40F9-8A8D-F908B8B2265D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B74DED55-1D3B-40F9-8A8D-F908B8B2265D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E5DF65-8179-4AB1-85C3-F8F063DF3F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E5DF65-8179-4AB1-85C3-F8F063DF3F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E5DF65-8179-4AB1-85C3-F8F063DF3F7A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{07E5DF65-8179-4AB1-85C3-F8F063DF3F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E5DF65-8179-4AB1-85C3-F8F063DF3F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E5DF65-8179-4AB1-85C3-F8F063DF3F7A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
