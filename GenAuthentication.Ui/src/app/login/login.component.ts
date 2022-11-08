@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Settings } from '../../settings';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +10,7 @@ import { Settings } from '../../settings';
 export class LoginComponent implements OnInit {
   protected user: User = new User();
 
-  constructor(private authenticationService: AuthenticationService, private settings: Settings, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
     this.user = new User();
