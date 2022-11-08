@@ -1,1 +1,24 @@
-<p>login works!</p>
+<h2>Login</h2>
+
+<div>
+  <label for="new-user-username">Username: </label>
+  <input id="new-user-username" type="text" required lengthValidator [(ngModel)]="user.username" #userUsername="ngModel" value="" />
+
+  <div *ngIf="userUsername.invalid && (userUsername.dirty || userUsername.touched)"
+       class="alert">
+    <div *ngIf="userUsername.errors?.['required']">
+      Username is required.
+    </div>
+    <div *ngIf="userUsername.errors?.['lengthInvalid']">
+      Username can not exceed 100 characters.
+    </div>
+  </div>
+
+  <button type="button" class="get-button" (click)="get(userUsername.value)" *ngIf="(!(userUsername.invalid && (userUsername.dirty || userUsername.touched)))">
+    Login
+  </button>
+
+  <button type="button" class="register-button" (click)="goToRegister()">
+    Register
+  </button>
+</div>

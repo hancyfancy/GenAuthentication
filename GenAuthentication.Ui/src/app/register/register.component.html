@@ -1,1 +1,46 @@
-<p>register works!</p>
+<h2>Register</h2>
+
+<div>
+  <label for="new-user-username">Username: </label>
+  <input id="new-user-username" type="text" required lengthValidator [(ngModel)]="user.username" #userUsername="ngModel" value="" />
+
+  <div *ngIf="userUsername.invalid && (userUsername.dirty || userUsername.touched)"
+       class="alert">
+    <div *ngIf="userUsername.errors?.['required']">
+      Username is required.
+    </div>
+    <div *ngIf="userUsername.errors?.['lengthInvalid']">
+      Username can not exceed 100 characters.
+    </div>
+  </div>
+
+  <label for="new-user-email">Email: </label>
+  <input id="new-user-email" type="text" required lengthValidator [(ngModel)]="user.email" #userEmail="ngModel" value="" />
+
+  <div *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)"
+       class="alert">
+    <div *ngIf="userEmail.errors?.['required']">
+      Email is required.
+    </div>
+    <div *ngIf="userEmail.errors?.['lengthInvalid']">
+      Email may contain at most 2 decimal places.
+    </div>
+  </div>
+
+  <label for="new-user-phone">Phone: </label>
+  <input id="new-user-phone" type="text" required lengthValidator [(ngModel)]="user.phone" #userPhone="ngModel" value="" />
+
+  <div *ngIf="userPhone.invalid && (userPhone.dirty || userPhone.touched)"
+       class="alert">
+    <div *ngIf="userPhone.errors?.['required']">
+      Phone is required.
+    </div>
+    <div *ngIf="userPhone.errors?.['lengthInvalid']">
+      Phone may contain at most 2 decimal places.
+    </div>
+  </div>
+
+  <button type="button" class="add-button" (click)="add(userUsername.value, userEmail.value, userPhone.value)" *ngIf="(!(userUsername.invalid && (userUsername.dirty || userUsername.touched))) && (!(userEmail.invalid && (userEmail.dirty || userEmail.touched))) && (!(userPhone.invalid && (userPhone.dirty || userPhone.touched)))">
+    Register
+  </button>
+</div>
